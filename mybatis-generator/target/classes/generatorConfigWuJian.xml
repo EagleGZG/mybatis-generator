@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration >
+<!-- macosx path -->
+<!--
+  	<classPathEntry location="/Users/xwarrior/Documents/myworkspace_deploy/ipharmacare/ipharmacare.lib/lib/mysql-connector-java-5.1.14.jar"/>
+ -->
+<!-- windows path -->
+<!-- 在pom.xml中使用了maven插件,所以不用使用eclipse插件, 可以直接cmd到ipharmacare.admin.domain执行"mvn mybatis-generator:generate"命令生成MyBatis文件 -->
+	<classPathEntry location="C:/Users/T450/.m2/repository/mysql/mysql-connector-java/5.1.22/mysql-connector-java-5.1.22.jar" />
+  <context id="context1" targetRuntime="MyBatis3" defaultModelType="flat">
+  
+  		<!--将所有对象生产在一个文件中，不生成withblobs，便于管理 -->
+ 
+  		<plugin type="com.wuj.generator.plugins.PojosPlugin" />
+  		<!-- java文件生成位置 *.Java  生成空的mapper.java类
+ 		<plugin type="com.wuj.generator.plugins.AdditionJavaFilePlugin">
+			<property name="search" value="MBG" />
+			<property name="replace" value="" />
+			<property name="targetPackage" value="com.wuj.dao.mapper" />
+		</plugin>
+		-->
+		<plugin type="com.wuj.generator.plugins.SqlMapReturnIdPlugin" />
+		<!--xml文件生成位置 *.xml
+		<plugin type="com.wuj.generator.plugins.AdditionXmlFilePlugin">
+			<property name="search" value="MBG" />
+			<property name="replace" value="" />
+			<property name="nameSpaceSearch" value="mbg" />
+			<property name="nameSpaceReplace" value="mapper" />
+			<property name="targetPackage" value="com.wuj.dao.mapper" />
+		</plugin>
+		 
+		<plugin type="com.wuj.generator.plugins.ExamplesPlugin">
+			<property name="parentExample" value="com.wuj.dao.BaseExample" />
+		</plugin>
+		-->
+		<plugin type="com.wuj.generator.plugins.PagingPlugin" />
+		<plugin type="com.wuj.generator.plugins.ReTypePlugin">
+			<property name="fromFields" value="java.lang.Byte" />
+			<property name="toFields" value="java.lang.Integer" />
+		</plugin>
+		<!--  
+		<plugin type="com.wuj.generator.plugins.RenameFilePlugin">
+			<property name="priffix" value="MBG" />
+			<property name="suffix" value="" />
+		</plugin>
+		-->
+		<plugin type="com.wuj.generator.plugins.RenameFileByPatternPlugin">
+			<property name="search" value="Mapper" />
+			<property name="replace" value="Mapper" />
+		</plugin>
+		<commentGenerator type="com.wuj.generator.api.MyCommentGenerator">
+			<property name="suppressAllComments" value="false" />
+			<property name="suppressDate" value="true"/>
+		</commentGenerator>
+		<!-- & 需要转义为 &amp; -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://101.132.43.51:3306/wxshop?characterEncoding=UTF-8&amp;useUnicode=true&amp;useSSL=false&amp;tinyInt1isBit=false"
+			userId="admin" password="1qaz@WSX" /> 
+		 <!--<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://127.0.0.1:3306/ipharmacare_knowledge?characterEncoding=UTF-8&amp;tinyInt1isBit=false"
+			userId="root" password="123456" />-->
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+	    <javaModelGenerator targetPackage="com.wuj.entity"
+				targetProject="src/main/java">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<!-- xml mapper文件生成后放到resources目录下
+		<sqlMapGenerator targetPackage="com.wuj.dao.mbg"
+			targetProject="src/main/resource" />
+		 --> 
+		<!-- 
+			ANNOTATEDMAPPER:基于注解的Mapper接口，不会有对应的XML映射文件
+			MIXEDMAPPER:XML和注解的混合形式，(上面这种情况中的)
+			XMLMAPPER:所有的方法都在XML中，接口调用依赖XML文件
+		 --> 
+		<javaClientGenerator targetPackage="com.wuj.dao.mapper"
+			targetProject="src/main/java" type="ANNOTATEDMAPPER">
+			<property name="enableSubPackages" value="true" />	
+		</javaClientGenerator>
+		
+		
+		<!-- <table tableName="tb_instruction_original" domainObjectName="InstructionOriginal"
+			     enableCountByExample="false" enableUpdateByExample="false"
+				 enableDeleteByExample="false" enableSelectByExample="false"
+				 selectByExampleQueryId="false">
+	    </table> -->
+  
+
+
+       <!-- <table tableName="tb_knowledge_import_history" domainObjectName="KnowledgeImportHistory"
+       		enableCountByExample="true" enableUpdateByExample="true"
+      	 	enableDeleteByExample="true" enableSelectByExample="true"
+       		selectByExampleQueryId="true">
+        </table>
+        -->
+        <table tableName="manager_user" domainObjectName="ManagerUser"
+       		enableCountByExample="false" enableUpdateByExample="false"
+      	 	enableDeleteByExample="false" enableSelectByExample="false"
+       		selectByExampleQueryId="false">
+        </table>
+        
+  </context>
+</generatorConfiguration>
